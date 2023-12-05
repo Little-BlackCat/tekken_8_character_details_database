@@ -1,10 +1,11 @@
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
-from datetime import datetime, date
+from datetime import datetime
 import re
+from airflow.models import Variable
 
-url = 'https://tekken.fandom.com/wiki/Tekken_8'
+url = Variable.get('WEB_URL')
 
 res = requests.get(url)
 res.encoding = "utf-8"
@@ -25,6 +26,9 @@ age = []
 gender = []
 
 def extract_data():
+  '''The function extract_data is used to extract data from a source.
+  
+  '''
   # scraping data from web
   for lightbox in lightboxes:
 
@@ -47,7 +51,7 @@ def extract_data():
 
   # scraping data detail such as img, age, gender
   for detail in url_name:
-    url = f'https://tekken.fandom.com{detail}'
+    url = Variable.get('SUBWEB_URL') + f'{detail}'
     res = requests.get(url)
     res.encoding = "utf-8"
 

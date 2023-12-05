@@ -5,22 +5,19 @@ from datetime import timedelta
 from database import scrap_data_from_web
 
 def get_data_from_web():
-  get_data_to_database = scrap_data_from_web()
-  return get_data_to_database
+  scrap_data_from_web()
+  print("Load data to Supabase success.")
 
 
-with DAG(
+with DAG (
+
   "tekken_8_character_details_dag",
   start_date=days_ago(1),
   schedule_interval="@daily",
   default_args={
-        'retries': 1,
-        'retry_delay': timedelta(minutes=5),
-        'depends_on_past': False,
-        'email_on_failure': False,
-        'email_on_retry': False,
-        'catchup': False,  # Disable catching up to avoid running multiple times for past dates
-    },
+    'retries': 1,
+    'retry_delay': timedelta(minutes=3),
+  },
   tags=["tekken_8_character"]
 
 ) as dag:
