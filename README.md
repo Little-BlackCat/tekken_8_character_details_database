@@ -33,7 +33,7 @@ This project focuses on extracting character details from the Tekken 8 video gam
 
     The processed data, available as a Pandas DataFrame, is uploaded to the Supabase database using Pandas' to_sql functionality.
     
-Project Flow:
+## Project Flow
 ![alt text](https://github.com/Little-BlackCat/tekken_8_character_details_database/blob/main/assets/Tekken_8_Character_Details.png "Tekken 8")
 
 ## Credit
