@@ -160,14 +160,14 @@ def extract_data():
       gender.append(sex)
 
   df = pd.DataFrame({
-      'Full name': character_name,
-      'Gender': gender,
-      'Age': age,
-      'Height(cm)': height,
-      'Weight(kg)': weight,
-      'Region' : origin,
-      'Image Link' : image,
-      'Revealed Date': revealed_date,
+      'full_name': character_name,
+      'gender': gender,
+      'age': age,
+      'height(cm)': height,
+      'weight(kg)': weight,
+      'region' : origin,
+      'image_link' : image,
+      'revealed_date': revealed_date,
   })
 
   # Reset the index starting from 1
