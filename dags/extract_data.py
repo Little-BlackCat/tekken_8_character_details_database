@@ -75,16 +75,19 @@ def extract_data():
       height_element = soup \
                         .find("div", attrs={"data-source": "height"}) \
                         .find("div", attrs={"class": "pi-data-value"})
-
       if height_element:
         h = height_element \
-              .text.strip() 
+              .text.strip()
+              
+        if 'Unknown' in h or 'Infinite' in h:
+          max_height = None
+        else:
+          pattern = re.compile(r'(\d+)\s*cm')
+          heights = pattern.findall(h)
 
-        pattern = re.compile(r'(\d+)\s*cm')
-        heights = pattern.findall(h)
-
-        max_height = max(map(int, heights))
+          max_height = max(map(int, heights))
         height.append(max_height)
+
       else:
         max_height = None
         height.append(max_height)
@@ -101,12 +104,13 @@ def extract_data():
 
       if weight_element:
         w = weight_element \
-              .text.strip() 
-
-        pattern = re.compile(r'(\d+)\s*kg')
-        weights = pattern.findall(w)
-
-        max_weight = max(map(int, weights))
+              .text.strip()
+        if 'Unknown' in w or 'Infinite' in w:
+          max_weight = None
+        else:
+          pattern = re.compile(r'(\d+)\s*kg')
+          weights = pattern.findall(w)
+          max_weight = max(map(int, weights))
         weight.append(max_weight)
       else:
         max_weight = None
