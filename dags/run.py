@@ -15,9 +15,6 @@ with DAG (
   start_date=days_ago(1),
   schedule_interval="@daily",
   default_args={
-    'email': ["neko.sword@gmail.com"],
-    'email_on_failure': True,
-    'email_on_retry': True,
     'retries': 1,
     'retry_delay': timedelta(minutes=3),
   },
